@@ -624,7 +624,7 @@ void wmain()
     
     std::wcout.imbue(std::locale("kor"));
 
-    setConsoleSize(102, 30);
+    setConsoleSize(102, 31);
     setConsoleColors(BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY);
     SetConsoleTitleW(L"파이널 판타지 14 소대 정보 뷰어");
     ShowConsoleCursor(false);
