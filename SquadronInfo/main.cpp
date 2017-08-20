@@ -290,7 +290,7 @@ bool checkLatestRelease()
         if (jsonReader.parse(body, json))
         {
             std::string tag_name = json["tag_name"].asString();
-            if (tag_name.compare(PROC_VERSION) != 0)
+            if (tag_name.compare(PROC_VERSION_STR) != 0)
             {
                 return true;
             }
