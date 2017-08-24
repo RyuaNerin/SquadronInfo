@@ -5,7 +5,7 @@
 
 #define IDI_ICON    1
 
-#define PROC_VERSION       0,0,0,1
-#define PROC_VERSION_STR   "0.0.0.1"
+#define PROC_VERSION       0,0,0,2
+#define PROC_VERSION_STR   "0.0.0.2"
 
 #endif

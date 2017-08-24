@@ -108,7 +108,7 @@ PBYTE getPointer(HANDLE hProcess, PBYTE address)
     return ReadProcessMemory(hProcess, (LPCVOID)address, buff, 8, NULL) ? (PBYTE)toUInt64((PBYTE)buff, 0) : (PBYTE)NULL;
 }
 
-inline size_t getCharWidth(std::wstring string)
+size_t getCharWidth(std::wstring string)
 {
     size_t w = 0;
 
@@ -624,7 +624,7 @@ void wmain()
     
     std::wcout.imbue(std::locale("kor"));
 
-    setConsoleSize(102, 31);
+    setConsoleSize(104, 31);
     setConsoleColors(BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY);
     SetConsoleTitleW(L"파이널 판타지 14 소대 정보 뷰어");
     ShowConsoleCursor(false);
@@ -682,15 +682,15 @@ void wmain()
         std::wcout     << L"  소대 종합능력 : " << sq[0] << " / " << sq[2] << " / " << sq[4] << std::endl;
 
         //                  0         1         2         3         4         5         6         7         8         9         10
-        //                  123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.12
-        //                    | 1234 | 1234 | 12345 / 12345 | 12345678 | 123456 | 1234 | 소대 임무 참가 -> 파티 징크스 획득 +20% |
-        //                    | 1234 | 1234 | 12345 / 12345 | 12345678 | 123456 | 1234 | 123456789.123456789.123456789.123456789 |
-        std::wcout     << L"  ----------------------------------------------------------------------------------------------------" << std::endl
-                       << L"  | 번호 | 레벨 |    경험치     |  클래스  |  종족  | 성별 | 행운의 법칙                             |" << std::endl;
+        //                  123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234
+        //                    | 1234 | 1234 | 12345 / 12345 | 12345678 | 123456 | 1234 | 종족이 각기 다름 -> 파티 징크스 획득 +20% |
+        //                    | 1234 | 1234 | 12345 / 12345 | 12345678 | 123456 | 1234 | 123456789.123456789.123456789.123456789.1 |
+        std::wcout     << L"  ------------------------------------------------------------------------------------------------------" << std::endl
+                       << L"  | 번호 | 레벨 |    경험치     |  클래스  |  종족  | 성별 | 행운의 법칙                               |" << std::endl;
 
         for (i = 0; i < 8; ++i)
         {
-            std::wcout << L"  |------|------|---------------|----------|--------|------|-----------------------------------------|" << std::endl
+            std::wcout << L"  |------|------|---------------|----------|--------|------|-------------------------------------------|" << std::endl
                        << L"  |    "
                        << std::to_wstring(i)                                    << L" | "
                        << PadLeft(std::to_wstring(si[i].level), 4)              << L" | "
@@ -701,12 +701,12 @@ void wmain()
                        << (si[i].woman ? L" 여 " : L" 남 ")                     << L" | ";
 
             if (si[i].tcond)
-                std::wcout << PadRight(trait_cond[si[i].tcond] + sf(trait[si[i].trait].s, trait[si[i].trait].v[si[i].tvalue]), 39) << L" |" << std::endl;
+                std::wcout << PadRight(trait_cond[si[i].tcond] + sf(trait[si[i].trait].s, trait[si[i].trait].v[si[i].tvalue]), 41) << L" |" << std::endl;
             else
-                std::wcout << "                                        |" << std::endl;
+                std::wcout << "                                          |" << std::endl;
         }
 
-        std::wcout     << L"  ----------------------------------------------------------------------------------------------------" << std::endl
+        std::wcout     << L"  ------------------------------------------------------------------------------------------------------" << std::endl
                        << std::endl
                        << L"  엔터 키를 누르면 갱신, 다른 키를 누르면 종료됩니다." << std::endl;
     } while (std::getchar() == L'\n');
